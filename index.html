@@ -1,30 +1,297 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Work with Ezaz</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ezaz - CEO & Marketing Strategist</title>
+
   <style>
-    html, body {
+    body {
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      height: 100%;
-      overflow: hidden;
+      overflow-x: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      position: relative;
+      background: #f9f9f9;
     }
-    iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
+    #animated-map {
+      position: fixed;
+      top: 0; left: 0;
       width: 100vw;
       height: 100vh;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/World_map_blank_without_borders.svg/2000px-World_map_blank_without_borders.svg.png') no-repeat center center;
+      background-size: contain;
+      pointer-events: none;
+      z-index: 0;
+      filter: brightness(0.9);
+      animation: zoomPulse 30s ease-in-out infinite alternate;
+    }
+    @keyframes zoomPulse {
+      0% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(1.05);
+      }
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(255, 255, 255, 0.85);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .container {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      padding: 40px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .profile-pic {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin: 0 auto;
+      overflow: hidden;
+      border: 2px solid rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .profile-pic:hover {
+      transform: scale(1.05);
+    }
+    .profile-pic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    h1 {
+      font-size: 24px;
+      color: #333;
+      transition: transform 0.2s ease;
+      cursor: pointer;
+      margin: 0;
+    }
+    h1:hover {
+      transform: scale(1.03);
+    }
+    .designation {
+      color: #777;
+      font-size: 13px;
+      font-weight: 500;
+      transition: transform 0.2s ease, color 0.2s ease;
+      cursor: pointer;
+      margin: 0;
+    }
+    .designation:hover {
+      transform: scale(1.05);
+      color: #999;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: left;
+      color: #555;
+      font-size: 16px;
+    }
+    ul li::before {
+      content: "";
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      background-color: #4CAF50;
+      mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.285 6.709a1 1 0 0 0-1.414 0L9 16.586l-3.871-3.872a1 1 0 0 0-1.415 1.415l4.578 4.578a1 1 0 0 0 1.415 0l10.578-10.578a1 1 0 0 0 0-1.414z"/></svg>') no-repeat center;
+      -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.285 6.709a1 1 0 0 0-1.414 0L9 16.586l-3.871-3.872a1 1 0 0 0-1.415 1.415l4.578 4.578a1 1 0 0 0 1.415 0l10.578-10.578a1 1 0 0 0 0-1.414z"/></svg>') no-repeat center;
+      margin-right: 8px;
+      transition: transform 0.2s ease;
+    }
+    ul li {
+      margin: 8px 0;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    ul li:hover {
+      transform: translateX(5px) scale(1.02);
+    }
+    ul li:hover::before {
+      transform: scale(1.1);
+    }
+    .buttons {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+    .buttons a {
+      padding: 14px 24px;
+      border-radius: 25px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      min-width: 150px;
+      font-size: 15px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease;
+    }
+    .portfolio {
+      background: #4CAF50;
+    }
+    .portfolio:hover {
+      background: #66bb6a;
+    }
+    .appointment {
+      background: #0052cc;
+    }
+    .appointment:hover {
+      background: #3d74e6;
+    }
+    .contact-social-container {
+      margin-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .email-contact {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      color: #555;
+      font-weight: 500;
+      white-space: nowrap;
+      gap: 6px;
+      user-select: text;
+    }
+    .email-contact img {
+      width: 20px;
+      height: 20px;
+    }
+    .email-contact button {
+      background: none;
       border: none;
+      color: #555;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 0;
+      text-decoration: underline;
+    }
+    .social-icons {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .social-icons a {
+      display: inline-flex;
+      width: 24px;
+      height: 24px;
+      transition: transform 0.2s;
+    }
+    .social-icons a:hover {
+      transform: scale(1.2);
+    }
+    .social-icons img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+    .quote {
+      color: #777;
+      font-size: 13px;
+      font-style: italic;
+      margin-top: 12px;
+    }
+    @media (max-width: 480px) {
+      .contact-social-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
     }
   </style>
 </head>
 <body>
-  <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQ8f6R52Ku8r-qTzqg82BcC4hPHl7rJbPUEnvriRZpYbszFEyZnPbNcwo3_O1d8awu2UT4wDKTcjvUP/pubembed?start=false&loop=false&delayms=3000" 
-          allowfullscreen
-          mozallowfullscreen
-          webkitallowfullscreen>
-  </iframe>
+  <div id="animated-map" aria-hidden="true"></div>
+  <div class="container">
+    <div class="profile-pic" tabindex="0" role="button" aria-label="View profile photo"
+      onclick="window.open(this.querySelector('img').src, '_blank')"
+      onkeypress="if(event.key==='Enter'){window.open(this.querySelector('img').src, '_blank')}">
+      <img src="https://lh3.googleusercontent.com/d/1TMMRxhtocSiF-8_wwNcMo5gIuOBC9ESw" alt="Profile Photo" />
+    </div>
+
+    <h1>Md Ezazur Rahman</h1>
+    <p class="designation">Chief Executive Officer, Sora Digital</p>
+
+    <ul>
+      <li>Creative Web Developer</li>
+      <li>5+ Years Experience</li>
+      <li>Specialized in Modern UI/UX</li>
+      <li>Passionate about innovation</li>
+    </ul>
+
+    <div class="buttons">
+      <a href="https://portfolio.ezazrahman.com" class="portfolio" target="_blank" rel="noopener noreferrer">Check My Portfolio</a>
+      <a href="https://meet.ezazrahman.com" class="appointment" target="_blank" rel="noopener noreferrer">Set an Appointment</a>
+    </div>
+
+    <div class="contact-social-container">
+      <div class="email-contact">
+        <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Email Icon" />
+        <button id="showEmailBtn" aria-label="Show email address">View Email</button>
+        <a href="mailto:ezaz@sora-digital.com" id="emailLink" style="display:none; color:#555; text-decoration:none; margin-left:6px; user-select:text;">
+          ezaz@sora-digital.com
+        </a>
+      </div>
+      <div class="social-icons">
+        <a href="https://www.linkedin.com/in/ezazrahman/" target="_blank" aria-label="LinkedIn">
+          <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" />
+        </a>
+        <a href="#" aria-label="WhatsApp">
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" />
+        </a>
+        <a href="https://t.me/ezaz_rahman" target="_blank" aria-label="Telegram">
+          <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" />
+        </a>
+        <a href="https://x.com" target="_blank" aria-label="X">
+          <img src="https://cdn-icons-png.flaticon.com/512/5968/5968830.png" alt="X" />
+        </a>
+      </div>
+    </div>
+
+    <p class="quote">"The only way to do great work is to love what you do." – Steve Jobs</p>
+  </div>
+
+  <script>
+    const btn = document.getElementById('showEmailBtn');
+    const email = document.getElementById('emailLink');
+
+    btn.addEventListener('click', () => {
+      btn.style.display = 'none';
+      email.style.display = 'inline';
+    });
+  </script>
 </body>
 </html>
+
