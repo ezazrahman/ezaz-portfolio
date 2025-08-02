@@ -259,6 +259,38 @@
       100% { transform: scale(1); }
     }
 
+    /* Credits */
+    .credits {
+      margin-top: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      color: #87CEEB;
+      font-size: 13px;
+      user-select: none;
+    }
+    .credits svg.cloud-icon {
+      width: 20px;
+      height: 20px;
+      fill: #87CEEB;
+      flex-shrink: 0;
+    }
+    .credit-link {
+      color: #87CEEB;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      outline-offset: 2px;
+      text-shadow: none;
+    }
+    .credit-link:hover,
+    .credit-link:focus {
+      color: #00bfff;
+      text-decoration: underline;
+      text-shadow: none;
+    }
+
     @media (max-width: 480px) {
       .contact-social-container {
         flex-direction: column;
@@ -325,6 +357,15 @@
       <img src="https://flagcdn.com/au.svg" alt="Australia Flag" />
       <img src="https://flagcdn.com/eu.svg" alt="European Union Flag" />
       <img src="https://flagcdn.com/ae.svg" alt="UAE Flag" />
+    </div>
+
+    <div class="credits" role="contentinfo" tabindex="0" aria-label="Developed by Sora Digital">
+      <svg class="cloud-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+        <path d="M48.2 24.4a10 10 0 0 0-19.1-4.3 7 7 0 1 0-9.4 11.3 7.8 7.8 0 0 0 0 15.4h28a7 7 0 0 0 .5-13.9z"/>
+      </svg>
+      <a href="https://sora-digital.com" class="credit-link" aria-label="Visit Sora Digital website">
+        Developed by Sora Digital
+      </a>
     </div>
   </div>
 
